@@ -1,0 +1,13 @@
+{
+  "@Symfony": true,
+  "@PSR1" : false,
+  "blank_line_before_return": true,
+  "array_syntax":
+  {
+    "syntax": "short"
+  },
+  "linebreak_after_opening_tag": true,
+  "ordered_class_elements": true,
+  "ordered_imports": true
+
+}

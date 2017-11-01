@@ -1,0 +1,50 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ url('homepage') }}">
+                    <img src="{{ asset('images/medaillon_ouvert_small.png') }}" style="height:25px;display: inline">
+                    &nbsp;
+                    <span style="display:inline">Agile Rennes</span>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#">Connection</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="collapse navbar-collapse">
+        {{ knp_menu_render('top_level_menu', {'depth': 1, 'currentClass': 'on', 'ancestorClass': 'on', 'allow_safe_labels': true }) }}
+
+        <ul class="nav navbar-nav navbar-right">
+            {% block second_navbar_top %}{% endblock %}
+        </ul>
+    </div>
+
+    <div class='container'>
+        {% block container %}
+            <div class='row'>
+                <div class='col-centered col-lg-12 col-md-12 col-sm-12'>
+                    <div class='row' id="content">
+                        {% block content %}
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+    </div>
+
+
+{% endblock %}

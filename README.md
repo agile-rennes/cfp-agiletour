@@ -1,3 +1,8 @@
-# Agile Tour Rennes CFP
+Install node from source in /opt
+sudo apt-get update && sudo apt-get install yarn
+yarn add @symfony/webpack-encore --dev
+/opt/node/bin/npm install webpack
 
-[![Build Status](https://travis-ci.org/agile-rennes/cfp-agiletour.svg?branch=master)](https://travis-ci.org/agile-rennes/cfp-agiletour)
+
+Install SaSS
+sudo gem install sass --no-user-install

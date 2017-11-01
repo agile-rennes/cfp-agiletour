@@ -1,0 +1,14 @@
+services:
+    app.admin.format:
+        class: AppBundle\Admin\FormatAdmin
+        arguments: [~, AppBundle\Entity\Format, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Format }
+        public: true
+
+    app.admin.orateur:
+        class: AppBundle\Admin\OrateurAdmin
+        arguments: [~, AppBundle\Entity\Orateur, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Orateur }
+        public: true

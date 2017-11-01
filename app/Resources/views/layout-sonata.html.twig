@@ -1,0 +1,151 @@
+{% extends '::layout.html.twig' %}
+{#{% extends 'SonataAdminBundle::standard_layout.html.twig' %}#}
+
+ {#{% set _preview = block('preview') is defined ? block('preview')|trim : null %}#}
+    {% set _form = block('form') is defined ? block('form')|trim : null %}
+    {% set _show = block('show') is defined ? block('show')|trim : null %}
+    {% set _list_table = block('list_table') is defined ? block('list_table')|trim : null %}
+    {% set _list_filters = block('list_filters') is defined ? block('list_filters')|trim : null %}
+    {% set _tab_menu = block('tab_menu') is defined ? block('tab_menu')|trim : null %}
+    {#{% set _content = block('content') is defined ? block('content')|trim : null %}#}
+    {#{% set _title = block('title') is defined ? block('title')|trim : null %}#}
+    {#{% set _breadcrumb = block('breadcrumb') is defined ? block('breadcrumb')|trim : null %}#}
+    {% set _actions = block('actions') is defined ? block('actions')|trim : null %}
+    {% set _navbar_title = block('navbar_title') is defined ? block('navbar_title')|trim : null %}
+    {% set _list_filters_actions = block('list_filters_actions') is defined ? block('list_filters_actions')|trim : null %}
+
+
+ {% if _show is not empty %}
+     {%  set _title = "title_show"|trans({'%name%': admin.toString(object)|truncate(15) }, 'SonataAdminBundle') %}
+ {% elseif _form is not empty %}
+     {%  set _title = "title_edit"|trans({'%name%': admin.toString(object)|truncate(15) }, 'SonataAdminBundle') %}
+ {% elseif _list_table is not empty %}
+     {% if admin.isChild and admin.parent.subject %}
+         {% set _title= "title_edit"|trans({'%name%': admin.parent.toString(admin.parent.subject)|truncate(15) }, 'SonataAdminBundle') %}
+     {% endif %}
+ {% endif %}
+
+
+
+ {% block stylesheets %}
+     {{ parent() }}
+
+     <link rel="stylesheet" href="{{ asset('bundles/sonatacore/vendor/bootstrap/dist/css/bootstrap.min.css') }}">
+     <link rel="stylesheet" href="{{ asset('bundles/sonatacore/vendor/components-font-awesome/css/font-awesome.min.css') }}">
+     <link rel="stylesheet" href="{{ asset('bundles/sonatacore/vendor/ionicons/css/ionicons.min.css') }}">
+     <link rel="stylesheet" href="{{ asset('bundles/sonataadmin/vendor/admin-lte/dist/css/AdminLTE.min.css') }}">
+     <link rel="stylesheet" href="{{ asset('bundles/sonataadmin/vendor/admin-lte/dist/css/skins/skin-black.min.css') }}">
+     <link rel="stylesheet" href="{{ asset('bundles/sonataadmin/vendor/iCheck/skins/square/blue.css') }}">
+     <link rel="stylesheet" href="{{ asset('bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}">
+     <link rel="stylesheet" href="{{ asset('bundles/sonataadmin/vendor/jqueryui/themes/base/jquery-ui.css') }}">
+     <link rel="stylesheet" href="{{ asset('bundles/sonatacore/vendor/select2/select2.css') }}">
+     <link rel="stylesheet" href="{{ asset('bundles/sonatacore/vendor/select2-bootstrap-css/select2-bootstrap.min.css') }}">
+     <link rel="stylesheet" href="{{ asset('bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css') }}">
+     <link rel="stylesheet" href="{{ asset('bundles/sonataadmin/css/styles.css') }}">
+     <link rel="stylesheet" href="{{ asset('bundles/sonataadmin/css/layout.css') }}">
+     <link rel="stylesheet" href="{{ asset('bundles/sonataadmin/css/tree.css') }}">
+     <link rel="stylesheet" href="{{ asset('bundles/sonataadmin/css/colors.css') }}">
+ {% endblock %}
+
+{% block javascripts %}
+
+    {% block sonata_javascript_config %}
+        <script>
+            window.SONATA_CONFIG = {
+                CONFIRM_EXIT: {% if sonata_admin.adminPool.getOption('confirm_exit') %}true{% else %}false{% endif %},
+                USE_SELECT2: {% if sonata_admin.adminPool.getOption('use_select2') %}true{% else %}false{% endif %},
+                USE_ICHECK: {% if sonata_admin.adminPool.getOption('use_icheck') %}true{% else %}false{% endif %},
+                USE_STICKYFORMS: {% if sonata_admin.adminPool.getOption('use_stickyforms') %}true{% else %}false{% endif %}
+            };
+            window.SONATA_TRANSLATIONS = {
+                CONFIRM_EXIT: '{{ 'confirm_exit'|trans({}, 'SonataAdminBundle')|escape('js') }}'
+            };
+
+            // http://getbootstrap.com/getting-started/#support-ie10-width
+            if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+                var msViewportStyle = document.createElement('style');
+                msViewportStyle.appendChild(document.createTextNode('@-ms-viewport{width:auto!important}'));
+                document.querySelector('head').appendChild(msViewportStyle);
+            }
+        </script>
+    {% endblock %}
+
+    {% block sonata_javascript_pool %}
+        {% for javascript in sonata_admin.adminPool.getOption('javascripts', []) %}
+            <script src="{{ asset(javascript) }}"></script>
+        {% endfor %}
+    {% endblock %}
+
+    {% set locale = app.request.locale %}
+    {# localize moment #}
+    {% if locale[:2] != 'en' %}
+        <script src="{{ asset(
+        'bundles/sonatacore/vendor/moment/locale/' ~
+        locale|lower|replace({'_':'-'}) ~
+        '.js'
+        ) }}"></script>
+    {% endif %}
+
+    {# localize select2 #}
+    {% if sonata_admin.adminPool.getOption('use_select2') %}
+        {% if locale == 'fr_FR' %}{% set locale = 'fr' %}{% endif %}
+
+        {# omit default EN locale #}
+        {% if locale[:2] != 'en' %}
+            <script src="{{ asset('bundles/sonatacore/vendor/select2/select2_locale_' ~ locale|replace({'_':'-'}) ~ '.js') }}"></script>
+        {% endif %}
+    {% endif %}
+
+    {#{{ parent() }}#}
+
+{% endblock %}
+
+
+
+
+{% block first_navbar_top %}
+    {{ _actions|raw }}
+
+    {% if _list_filters_actions is not empty %}
+        {{ _list_filters_actions|raw }}
+    {% endif %}
+{% endblock first_navbar_top %}
+
+{% block content %}
+
+
+    {% block sonata_page_content %}
+        <section class="content">
+
+            {% block sonata_admin_content %}
+
+                {% block notice %}
+                    {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
+                {% endblock notice %}
+
+                {% if _show is not empty %}
+                    <div class="sonata-ba-show">{{ _show|raw }}</div>
+                {% endif %}
+
+                {% if _form is not empty %}
+                    <div class="sonata-ba-form">{{ _form|raw }}</div>
+                {% endif %}
+
+                {% if _list_filters is not empty %}
+                    <div class="row">
+                        {{ _list_filters|raw }}
+                    </div>
+                {% endif %}
+
+                {% if _list_table is not empty %}
+                    <div class="row">
+                        {{ _list_table|raw }}
+                    </div>
+                {% endif %}
+            {% endblock sonata_admin_content %}
+        </section>
+
+    {% endblock sonata_page_content %}
+
+
+{% endblock %}
