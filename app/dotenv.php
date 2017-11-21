@@ -2,5 +2,9 @@
 
 use Symfony\Component\Dotenv\Dotenv;
 
-$dotenv = new Dotenv();
-$dotenv->load(__DIR__.'/../.env');
+$dotenvFilePath = __DIR__.'/../.env';
+
+if (file_exists($dotenvFilePath)) {
+    $dotenv = new Dotenv();
+    $dotenv->load($dotenvFilePath);
+}
