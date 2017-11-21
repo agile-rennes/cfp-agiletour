@@ -1,0 +1,20 @@
+{
+  "name": "agile-rennes-cfp",
+  "version": "1.0.0",
+  "description": "Pour faire mieux en 2018",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agile-rennes/cfp-agiletour.git"
+  },
+  "homepage": "https://github.com/agile-rennes/cfp-agiletour#readme",
+  "devDependencies": {
+    "@symfony/webpack-encore": "^0.16.0",
+    "bootstrap": "^3.3.7",
+    "bootstrap-sass": "^3.3.7",
+    "jquery": "^3.2.1",
+    "node-sass": "^4.6.0",
+    "sass-loader": "^6.0.6",
+    "webpack": "^3.8.1"
+  },
+  "dependencies": {}
+}
