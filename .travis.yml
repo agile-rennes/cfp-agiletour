@@ -1,5 +1,9 @@
 language: php
 php:
   - '7.1'
+services:
+  - docker
+before_script:
+  - bash app/scripts/build.sh
 script:
-  - bash test.sh
+  - bash app/scripts/test.sh

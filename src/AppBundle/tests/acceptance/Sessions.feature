@@ -1,0 +1,9 @@
+Feature: Sessions
+  In order to ...
+  As a ...
+  I need to ...
+
+  Scenario: see Sessions
+    Given there are sessions
+    When I go to the sessions list
+    Then I see sessions

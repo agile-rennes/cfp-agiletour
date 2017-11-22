@@ -1,5 +1,5 @@
 <?php
- //[STAMP] 87bbafa73ba2d8382474ed5e3bfc5d46
+ //[STAMP] 05701e2db43322783cadd3ec4c658a97
 
 namespace AppBundle\_generated;
 
@@ -7,7 +7,7 @@ namespace AppBundle\_generated;
 // You should not change it manually as it will be overwritten on next build
 // @codingStandardsIgnoreFile
 
-trait UnitTesterActions
+trait FunctionalTesterActions
 {
     /**
      * @return \Codeception\Scenario

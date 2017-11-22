@@ -2,3 +2,7 @@ actor: AcceptanceTester
 modules:
     enabled:
         - \AppBundle\Helper\Acceptance
+        - Symfony:
+            app_path: '../../app'
+            var_path: '../../var'
+            environment: 'dev'

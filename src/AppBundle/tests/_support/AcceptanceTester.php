@@ -22,7 +22,26 @@ class AcceptanceTester extends \Codeception\Actor
 {
     use _generated\AcceptanceTesterActions;
 
-    /*
-     * Define custom actions here
+    /**
+     * @Given there are sessions
      */
+    public function thereAreSessions()
+    {
+    }
+
+    /**
+     * @When I go to the sessions list
+     */
+    public function iGoToTheSessionsList()
+    {
+        $this->amOnPage('/admin/app/session/list');
+    }
+
+    /**
+     * @Then I see sessions
+     */
+    public function iSeeSessions()
+    {
+        $this->see('Admin');
+    }
 }

@@ -11,8 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 // This check prevents access to debug front controllers that are deployed by accident to production servers.
 // Feel free to remove this, extend it, or make something more sophisticated.
 
-$authorizedHosts = ['localhost', 'ancient-scrubland-90466.herokuapp.com'];
-$isAuthorized = in_array($_SERVER['HTTP_HOST'], $authorizedHosts);
+$authorizedHosts = ['localhost:8000', 'ancient-scrubland-90466.herokuapp.com'];
+$HTTP_HOST = $_SERVER['HTTP_HOST'];
+$isAuthorized = in_array($HTTP_HOST, $authorizedHosts);
 
 if (!$isAuthorized) {
     header('HTTP/1.0 403 Forbidden');

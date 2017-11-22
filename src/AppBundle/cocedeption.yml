@@ -16,9 +16,9 @@ extensions:
 modules:
     config:
         Db:
-            dsn: 'mysql:host=dev;dbname=peps'
-            user: 'peps'
-            password: 'peps'
+            dsn: 'mysql:host=%MYSQL_HOST%;dbname=%MYSQL_DATABASE%'
+            user: '%MYSQL_USER%'
+            password: '%MYSQL_PASSWORD%'
             #dump: tests/_data/dump.sql
 coverage:
     enabled: true
@@ -28,4 +28,4 @@ coverage:
         - tests/*
 
 params:
-   # - ../../.env # load params from environment vars
+    - ../../.env
