@@ -19,13 +19,16 @@ modules:
             dsn: 'mysql:host=%MYSQL_HOST%;dbname=%MYSQL_DATABASE%'
             user: '%MYSQL_USER%'
             password: '%MYSQL_PASSWORD%'
-            #dump: tests/_data/dump.sql
+            dump: tests/_data/dump.sql
 coverage:
     enabled: true
     include:
         - .
     exclude:
         - tests/*
-
-params:
-    - ../../.env
+#env:
+#    local:
+#        params:
+#            - ../../.env
+#
+#    travis:

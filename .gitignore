@@ -20,4 +20,4 @@
 .env
 node_modules/
 web/build/
-
+src/AppBundle/tests/_output

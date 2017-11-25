@@ -42,6 +42,7 @@ class AcceptanceTester extends \Codeception\Actor
      */
     public function iSeeSessions()
     {
-        $this->see('Admin');
+        $lines = $this->grabMultiple('table.sonata-ba-list tbody tr');
+        self::assertTrue(count($lines) > 0);
     }
 }

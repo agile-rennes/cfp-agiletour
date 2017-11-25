@@ -1,8 +1,12 @@
 actor: AcceptanceTester
 modules:
     enabled:
+        - Asserts
         - \AppBundle\Helper\Acceptance
-        - Symfony:
-            app_path: '../../app'
-            var_path: '../../var'
-            environment: 'dev'
+#        - Symfony:
+#            app_path: '../../app'
+#            var_path: '../../var'
+#            environment: 'prod'
+#            debug: 'false'
+        - PhpBrowser:
+            url: 'http://localhost:8000'
