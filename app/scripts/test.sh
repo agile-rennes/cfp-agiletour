@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-./vendor/bin/codecept -c src/AppBundle/cocedeption.yml run
+./vendor/bin/codecept -c src/AppBundle/cocedeption.yml run -vvv
