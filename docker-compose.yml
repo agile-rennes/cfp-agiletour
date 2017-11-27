@@ -11,8 +11,8 @@ services:
             MYSQL_DATABASE: ${MYSQL_DATABASE}
             MYSQL_USER: ${MYSQL_USER}
             MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-    webpack:
-        image: jmfirth/webpack
+#    webpack:
+#        image: jmfirth/webpack
 #node
 #nginx
 #php-fpm
