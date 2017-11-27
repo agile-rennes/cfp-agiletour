@@ -5,6 +5,6 @@ services:
   - docker
 before_script:
   - bash app/scripts/build.sh
-  - bash app/scripts/start.sh
+  - bash app/scripts/start.sh prod
 script:
   - bash app/scripts/test.sh
