@@ -6,6 +6,7 @@ php:
 services:
   - docker
 before_script:
+  - sudo service mysql stop
   - bash app/scripts/build.sh
   - bash app/scripts/start.sh
   - bash app/scripts/init.sh
